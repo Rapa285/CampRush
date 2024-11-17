@@ -575,7 +575,7 @@ GameObject:
   - component: {fileID: 934819307}
   - component: {fileID: 934819306}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: Retry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -644,13 +644,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1372591050}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1372591051}
+        m_TargetAssemblyTypeName: GameplayUIController, Assembly-CSharp
+        m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -928,7 +928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characters:
-  - {fileID: 5152518647018152956, guid: 18596dc334bf567428740c29964b7712, type: 3}
+  - {fileID: 3848869188131888965, guid: 181d151ccfc124f4aaeee6c246724fb3, type: 3}
   scoreBoard: {fileID: 0}
   score: 0
   GameplayUI: {fileID: 0}
@@ -1120,29 +1120,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1987315221331033341, guid: a661f8502aa480449b33cb99d38e0054, type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1987315221331033341, guid: a661f8502aa480449b33cb99d38e0054, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 100932795
-      objectReference: {fileID: 0}
     - target: {fileID: 3511512213194025613, guid: a661f8502aa480449b33cb99d38e0054, type: 3}
       propertyPath: m_Name
       value: Grass
-      objectReference: {fileID: 0}
-    - target: {fileID: 3511512213194025613, guid: a661f8502aa480449b33cb99d38e0054, type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3511512213194025613, guid: a661f8502aa480449b33cb99d38e0054, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3663261882483504592, guid: a661f8502aa480449b33cb99d38e0054, type: 3}
-      propertyPath: m_Layer
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7256277349650951893, guid: a661f8502aa480449b33cb99d38e0054, type: 3}
       propertyPath: m_LocalPosition.x

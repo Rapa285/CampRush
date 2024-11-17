@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7256277349650951893}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Grass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 552260609252396799}
   - component: {fileID: 1987315221331033341}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TileSet_V1_47
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,8 +102,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 100932795
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 500332090, guid: 7b0045d961ab6274bb3e62613bb87b97, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -27,13 +27,13 @@ public class VehicleSpawner : MonoBehaviour
     IEnumerator SpawnVehicles(){
         while (!GameManager.instance.CharStatus){
             // Debug.Log("Player alive? :" + GameManager.instance.CharStatus);
-            yield return new WaitForSeconds(Random.Range(1,5));
+            yield return new WaitForSeconds(Random.Range(1,3));
 
             randomIndex = Random.Range(0, vehicleReference.Length);
 
             spawnedVehicle = Instantiate(vehicleReference[randomIndex]);
             spawnedVehicle.transform.position = spawnerPos;
-            spawnedVehicle.GetComponent<Vehicle>().speed = 10;
+            spawnedVehicle.GetComponent<Vehicle>().speed = - 10;
         } // while loop
     }
     
