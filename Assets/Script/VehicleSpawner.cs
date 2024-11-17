@@ -33,7 +33,7 @@ public class VehicleSpawner : MonoBehaviour
 
             spawnedVehicle = Instantiate(vehicleReference[randomIndex]);
             spawnedVehicle.transform.position = spawnerPos;
-            spawnedVehicle.GetComponent<Vehicle>().speed = - Random.Range(4,10);
+            spawnedVehicle.GetComponent<Vehicle>().speed = 10;
         } // while loop
     }
     
