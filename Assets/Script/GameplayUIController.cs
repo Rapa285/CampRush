@@ -5,14 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class GameplayUIController : MonoBehaviour
 {
-    // public void RestartGame(){
-    //     SceneManager.LoadScene(SceneManager.GetActiveScene().name); // returns "Gameplay"
-    // }
+    public void RestartGame(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // returns "Gameplay"
+    }
 
     public void HomeButton(){
         SceneManager.LoadScene("Main Menu");
 
     }
-
+    
     
 }

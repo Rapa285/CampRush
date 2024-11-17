@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private int score;
 
+    [SerializeField]
+    private GameObject GameplayUI;
 
     void Update()
     {
@@ -89,6 +91,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    public void GameOver(){
 
+    }
 
 }
