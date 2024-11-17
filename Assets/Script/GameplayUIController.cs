@@ -13,6 +13,4 @@ public class GameplayUIController : MonoBehaviour
         SceneManager.LoadScene("Main Menu");
 
     }
-    
-    
 }

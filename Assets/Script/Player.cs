@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
             GameManager.instance.CharStatus = true;
             Debug.Log("ontrigger status: "+GameManager.instance.CharStatus);
             Destroy(gameObject);
-            
+            GameManager.instance.GameOver();
         }
     }
 }

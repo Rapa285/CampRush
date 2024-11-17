@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
     private void Awake(){
         if (instance == null){
             instance = this;
+            // GameplayUI = GameObject.Find("Game Over");
+            // GameplayUI.SetActive(false);
             DontDestroyOnLoad(gameObject);
         }
         else {
@@ -70,6 +72,9 @@ public class GameManager : MonoBehaviour
             Instantiate(characters[CharIndex]);
             CharStatus = false;
             score = 0;
+            resumeGame();
+            GameplayUI = GameObject.Find("Game Over");
+            GameplayUI.SetActive(false);
             Debug.Log("instantiate status: "+GameManager.instance.CharStatus);
         }
     }
@@ -92,7 +97,8 @@ public class GameManager : MonoBehaviour
     }
 
     public void GameOver(){
-
+        pauseGame();
+        GameplayUI.SetActive(true);
     }
 
 }
