@@ -12,9 +12,7 @@ public class Player : MonoBehaviour
 
 
     private SpriteRenderer sr;
-
-    private string WALK_H = "WalkH";
-
+    private string VEHICLE_TAG = "Vehicle";
     private void Awake(){
 
         sr = GetComponent<SpriteRenderer>();
@@ -39,4 +37,12 @@ public class Player : MonoBehaviour
         transform.position += new Vector3(0f, movementY, 0f) * Time.deltaTime * moveSpeed;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision){
+        if (collision.gameObject.CompareTag(VEHICLE_TAG)){
+            GameManager.instance.CharStatus = true;
+            Debug.Log("ontrigger status: "+GameManager.instance.CharStatus);
+            Destroy(gameObject);
+            
+        }
+    }
 }
