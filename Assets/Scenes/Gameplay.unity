@@ -371,7 +371,7 @@ Transform:
   m_GameObject: {fileID: 249611291}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.68, y: 4.98, z: 0}
+  m_LocalPosition: {x: 22, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -505,7 +505,7 @@ MonoBehaviour:
   - {fileID: 4774339669800081928, guid: 46f3ad80b03fd644fafd5d20d4dfbdbc, type: 3}
   - {fileID: 64017976846305434, guid: a5969e61f7fb5ad45b461073efe3fe6e, type: 3}
   - {fileID: 4003020957937270858, guid: 860aa5bc81773464ba33d3e77e6c3b63, type: 3}
-  spawnedVehicle: {fileID: 0}
+  direction: -1
 --- !u!4 &328472504
 Transform:
   m_ObjectHideFlags: 0
@@ -515,7 +515,7 @@ Transform:
   m_GameObject: {fileID: 328472502}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22, y: 6, z: 0}
+  m_LocalPosition: {x: -10, y: 6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1505,7 +1505,7 @@ MonoBehaviour:
   - {fileID: 4774339669800081928, guid: 46f3ad80b03fd644fafd5d20d4dfbdbc, type: 3}
   - {fileID: 64017976846305434, guid: a5969e61f7fb5ad45b461073efe3fe6e, type: 3}
   - {fileID: 4003020957937270858, guid: 860aa5bc81773464ba33d3e77e6c3b63, type: 3}
-  spawnedVehicle: {fileID: 0}
+  direction: 1
 --- !u!4 &1125430079
 Transform:
   m_ObjectHideFlags: 0
@@ -1777,7 +1777,7 @@ MonoBehaviour:
   - {fileID: 4774339669800081928, guid: 46f3ad80b03fd644fafd5d20d4dfbdbc, type: 3}
   - {fileID: 64017976846305434, guid: a5969e61f7fb5ad45b461073efe3fe6e, type: 3}
   - {fileID: 4003020957937270858, guid: 860aa5bc81773464ba33d3e77e6c3b63, type: 3}
-  spawnedVehicle: {fileID: 0}
+  direction: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

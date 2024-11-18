@@ -9,8 +9,9 @@ public class VehicleSpawner : MonoBehaviour
     private GameObject[] vehicleReference;
 
     [SerializeField]
-    // private Vector3 spawnerPos;
+    private int direction;
 
+    private int[] speed = {10,5,7};
     private GameObject spawnedVehicle;
 
     private int randomIndex;
@@ -33,7 +34,11 @@ public class VehicleSpawner : MonoBehaviour
 
             spawnedVehicle = Instantiate(vehicleReference[randomIndex]);
             spawnedVehicle.transform.position = transform.position;
-            spawnedVehicle.GetComponent<Vehicle>().speed = - 10;
+            Vector3 scale = spawnedVehicle.transform.localScale;
+            scale.x *= direction;
+            spawnedVehicle.transform.localScale = scale;
+
+            spawnedVehicle.GetComponent<Vehicle>().speed = - direction * speed[randomIndex];
         } // while loop
     }
     
