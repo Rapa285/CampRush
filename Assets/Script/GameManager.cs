@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private int score;
 
-    [SerializeField]
     private GameObject GameplayUI;
 
     void Update()

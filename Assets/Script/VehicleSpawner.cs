@@ -9,7 +9,7 @@ public class VehicleSpawner : MonoBehaviour
     private GameObject[] vehicleReference;
 
     [SerializeField]
-    private Vector3 spawnerPos = new Vector3(10, 3, 0);
+    // private Vector3 spawnerPos;
 
     private GameObject spawnedVehicle;
 
@@ -32,7 +32,7 @@ public class VehicleSpawner : MonoBehaviour
             randomIndex = Random.Range(0, vehicleReference.Length);
 
             spawnedVehicle = Instantiate(vehicleReference[randomIndex]);
-            spawnedVehicle.transform.position = spawnerPos;
+            spawnedVehicle.transform.position = transform.position;
             spawnedVehicle.GetComponent<Vehicle>().speed = - 10;
         } // while loop
     }
