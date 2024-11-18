@@ -10,11 +10,12 @@ public class Player : MonoBehaviour
     private float moveSpeed = 10f;
     private float movementX,movementY;
 
-
+    private Rigidbody2D rb;
     private SpriteRenderer sr;
     private string VEHICLE_TAG = "Vehicle";
-    private void Awake(){
-
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
     }
 
@@ -31,10 +32,14 @@ public class Player : MonoBehaviour
     }
 
     void PlayerMovement() {
-        movementX = Input.GetAxisRaw("Horizontal");
-        movementY = Input.GetAxis("Vertical");
-        transform.position += new Vector3(movementX, 0f, 0f) * Time.deltaTime * moveSpeed;
-        transform.position += new Vector3(0f, movementY, 0f) * Time.deltaTime * moveSpeed;
+        float moveX = Input.GetAxis("Horizontal");
+        float moveY = Input.GetAxis("Vertical");
+
+        // Calculate the new position based on input
+        Vector2 newPosition = rb.position + new Vector2(moveX, moveY) * moveSpeed * Time.deltaTime;
+
+        // Move the Rigidbody2D (this respects collisions)
+        rb.MovePosition(newPosition);
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
