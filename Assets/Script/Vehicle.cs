@@ -6,7 +6,7 @@ public class Vehicle : MonoBehaviour
 {
 
     public float speed;
-
+    private string CAMERA_TAG = "MainCamera";
     private Rigidbody2D myBody;
     // Start is called before the first frame update
     void Start()
@@ -18,5 +18,13 @@ public class Vehicle : MonoBehaviour
     void FixedUpdate()
     {
         myBody.velocity = new Vector2(speed, myBody.velocity.y);
+    }
+
+    void OnTriggerExit2D(Collider2D other){
+        Debug.Log("entering camera");
+        if(other.gameObject.CompareTag(CAMERA_TAG)){
+            Destroy(gameObject);
+        }
+            
     }
 }
