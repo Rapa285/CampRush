@@ -11,7 +11,8 @@ public class VehicleSpawner : MonoBehaviour
     [SerializeField]
     private int direction;
 
-    private int[] speed = {10,5,7};
+    [SerializeField]
+    private int[] speed = {7,5,6};
     private GameObject spawnedVehicle;
 
     private int randomIndex;
