@@ -29,16 +29,16 @@ public class VehicleSpawner : MonoBehaviour
     IEnumerator SpawnVehicles(){
         while (!GameManager.instance.CharStatus){
             // Debug.Log("Player alive? :" + GameManager.instance.CharStatus);
-            yield return new WaitForSeconds(Random.Range(1,3));
+            yield return new WaitForSeconds(Random.Range(1,10));
 
             randomIndex = Random.Range(0, vehicleReference.Length);
 
             spawnedVehicle = Instantiate(vehicleReference[randomIndex]);
             spawnedVehicle.transform.position = transform.position;
-            Vector3 scale = spawnedVehicle.transform.localScale;
-            scale.x *= direction;
-            spawnedVehicle.transform.localScale = scale;
-
+            // Vector3 scale = spawnedVehicle.transform.localScale;
+            // scale.x *= direction;
+            // spawnedVehicle.transform.localScale = scale;
+            
             spawnedVehicle.GetComponent<Vehicle>().speed = - direction * speed[randomIndex];
         } // while loop
     }

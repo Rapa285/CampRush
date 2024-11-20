@@ -26,28 +26,10 @@ public class Player : MonoBehaviour
         transform.position = new Vector3(-3,-4.5f,0);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        // PlayerMovement();
+    void Update(){
+
         movement = Movement();
         rb.velocity = movement * moveSpeed;
-
-    }
-
-    void FixedUpdate(){
-        // PlayerMovement();
-        // rb.velocity = movement * moveSpeed;
-    }
-    void PlayerMovement() {
-        float moveX = Input.GetAxis("Horizontal");
-        float moveY = Input.GetAxis("Vertical");
-
-        // Calculate the new position based on input
-        Vector2 newPosition = rb.position + new Vector2(moveX, moveY) * moveSpeed * Time.deltaTime;
-        Vector2 movement = new Vector2(moveX, moveY).normalized;
-        // Move the Rigidbody2D (this respects collisions)
-        // rb.MovePosition(newPosition);
     }
 
     Vector2 Movement(){
