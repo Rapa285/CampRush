@@ -29,7 +29,7 @@ public class VehicleSpawner : MonoBehaviour
     IEnumerator SpawnVehicles(){
         while (!GameManager.instance.CharStatus){
             // Debug.Log("Player alive? :" + GameManager.instance.CharStatus);
-            yield return new WaitForSeconds(Random.Range(1,10));
+            yield return new WaitForSeconds(Random.Range(1,5));
 
             randomIndex = Random.Range(0, vehicleReference.Length);
 

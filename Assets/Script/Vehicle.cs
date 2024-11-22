@@ -11,55 +11,59 @@ public class Vehicle : MonoBehaviour
 
 
     [SerializeField]
-    public List<GameObject> waypoints;
+    public RoadGraph road = new RoadGraph();
 
+    public List<Node> waypoints;
     public float rotationSpeed = 5f;
-    private int currentWaypointIndex = 0;
+    private Node currentWaypoint;
 
     void Update()
     {
         if (waypoints.Count == 0) return; // If there are no waypoints, do nothing
 
         // Move the object towards the current waypoint
-        Transform targetWaypoint = waypoints[currentWaypointIndex].transform;
-        Debug.Log("Target: " +waypoints[currentWaypointIndex]);
-        // Vector3 direction = targetWaypoint.position - transform.position;
-        
+        Vector3 targetWaypoint = currentWaypoint.getPos();
+        Debug.Log("Target: " +targetWaypoint);
+
+        Vector3 direction = targetWaypoint - transform.position;
+
+        // Rotate or flip based on direction
+        if (direction.x != 0) // Moving horizontally
+        {
+            // Flip the object based on horizontal movement
+            transform.localScale = new Vector3(Mathf.Sign(direction.x) * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            transform.eulerAngles = new Vector3(0, 0, 0); // Reset rotation for horizontal movement
+        }
+        else if (direction.y != 0) // Moving vertically
+        {
+            if (direction.y > 0) // Moving up
+            {
+                transform.eulerAngles = new Vector3(0, 0, 90); // Rotate 90 degrees counter-clockwise
+            }
+            else // Moving down
+            {
+                transform.eulerAngles = new Vector3(0, 0, -90); // Rotate 90 degrees clockwise
+            }
+        }
+
         // Move towards the waypoint
-        transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, targetWaypoint, speed * Time.deltaTime);
 
         // Check if the object reached the waypoint
-        if (Vector3.Distance(transform.position, targetWaypoint.position) < 0.2f)
+        if (Vector3.Distance(transform.position, targetWaypoint) == 0)
         {
             // Move to the next waypoint (looping back to the first one when finished)
-            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Count;
-            Debug.Log("Next index: " +currentWaypointIndex);
+            currentWaypoint = currentWaypoint.getRandomDest();
+            Debug.Log("Next Destination: " +currentWaypoint);
 
         }
     }
 
     void Start()
     {
-        GameObject checkpoint = GameObject.Find("Checkpoint");
-        if (checkpoint != null)
-        {
-            // Iterate through all children of the "checkpoint" GameObject
-            foreach (Transform child in checkpoint.transform)
-            {
-                // Add each child GameObject to the list
-                waypoints.Add(child.gameObject);
-            }
-
-            // Optionally, print out the names of all children
-            foreach (GameObject child in waypoints)
-            {
-                Debug.Log("Checkpoint Child: " + child.name);
-            }
-        }
-        else
-        {
-            Debug.LogError("Checkpoint GameObject not found!");
-        }
+        road.initCheckpoints();
+        waypoints = road.getNodes();
+        currentWaypoint = waypoints[0];
         myBody = GetComponent<Rigidbody2D>();
     }
 
