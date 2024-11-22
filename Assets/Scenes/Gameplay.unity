@@ -2095,6 +2095,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characters:
   - {fileID: 3848869188131888965, guid: 181d151ccfc124f4aaeee6c246724fb3, type: 3}
+  - {fileID: 3848869188131888965, guid: 27a50b73c3cf3644ea6858b6c6d73fb2, type: 3}
   scoreBoard: {fileID: 0}
   score: 0
 --- !u!4 &1202281120
