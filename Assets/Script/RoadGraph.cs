@@ -98,12 +98,12 @@ public class RoadGraph{
             // Optionally, print out the names of all children
             foreach (Node child in checkpoints)
             {
-                Debug.Log("Checkpoint Child: " + child);
+                // Debug.Log("Checkpoint Child: " + child);
             }
         }
         else
         {
-            Debug.LogError("Checkpoint GameObject not found!");
+            // Debug.LogError("Checkpoint GameObject not found!");
         }
 
         for (int i = 0; i < checkpoints.Count; i++)

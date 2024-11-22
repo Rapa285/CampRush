@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Search;
+
 
 // using UnityEditor.SearchService;
 using UnityEngine;
@@ -22,6 +24,7 @@ public class GameManager : MonoBehaviour
     private int score;
 
     private GameObject GameplayUI;
+    private GameObject StoreUI;
 
     void Update()
     {
@@ -49,8 +52,6 @@ public class GameManager : MonoBehaviour
     private void Awake(){
         if (instance == null){
             instance = this;
-            // GameplayUI = GameObject.Find("Game Over");
-            // GameplayUI.SetActive(false);
             DontDestroyOnLoad(gameObject);
         }
         else {
@@ -74,6 +75,8 @@ public class GameManager : MonoBehaviour
             resumeGame();
             GameplayUI = GameObject.Find("Game Over");
             GameplayUI.SetActive(false);
+            StoreUI = GameObject.Find("Store");
+            StoreUI.SetActive(false);
             Debug.Log("instantiate status: "+GameManager.instance.CharStatus);
         }
     }
@@ -100,4 +103,14 @@ public class GameManager : MonoBehaviour
         GameplayUI.SetActive(true);
     }
 
+    public void showStoreUI(Sprite item_sprite){
+        StoreUI.SetActive(true);
+        GameObject item = GameObject.Find("ItemSprite").gameObject;
+        SpriteRenderer item_sr = item.GetComponent<SpriteRenderer>();
+        item_sr.sprite = item_sprite;
+    }
+
+    public void hideStoreUi(){
+        StoreUI.SetActive(false);
+    }
 }
