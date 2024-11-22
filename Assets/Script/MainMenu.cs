@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
 {
     public void Mulai()
     {
-        SceneManager.LoadScene("Gameplay");
+        SceneManager.LoadScene("CharSelection");
     }
     public void Quit()
     {
