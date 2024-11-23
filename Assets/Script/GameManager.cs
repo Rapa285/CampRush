@@ -108,6 +108,7 @@ public class GameManager : MonoBehaviour
         GameObject item = GameObject.Find("ItemSprite").gameObject;
         SpriteRenderer item_sr = item.GetComponent<SpriteRenderer>();
         item_sr.sprite = item_sprite;
+        Debug.Log("item sprite have been changed with:"+ item_sprite.name);
     }
 
     public void hideStoreUi(){

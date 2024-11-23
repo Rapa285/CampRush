@@ -10,6 +10,6 @@ public class CharacterSelect : MonoBehaviour
         Debug.Log("character id :"+characterIndex);
         GameManager.instance.CharIndex = characterIndex; // Set selected character
             
-        // SceneManager.LoadScene("Gameplay"); // Load the gameplay scene
+        SceneManager.LoadScene("Gameplay"); // Load the gameplay scene
     }
 }
