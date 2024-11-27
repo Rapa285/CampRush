@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class Store : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField]
     private Sprite item_sprite;
+    private bool isPlayerHere;
     void Start()
     {
         
@@ -15,7 +17,7 @@ public class Store : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        handlePlayerOnArea();
     }
 
     public Sprite getSprite(){
@@ -28,6 +30,7 @@ public class Store : MonoBehaviour
         {
             Debug.Log("Player entered the trigger zone.");
             GameManager.instance.showStoreUI(item_sprite);
+            isPlayerHere = true;
             // Add additional logic for when the Player enters the trigger
         }
     }
@@ -39,8 +42,16 @@ public class Store : MonoBehaviour
             Debug.Log("Player exited the trigger zone.");
             GameManager.instance.hideStoreUi();
             // Add additional logic for when the Player exits the trigger
+            isPlayerHere = false;
         }
     }
 
-
+    private void handlePlayerOnArea(){
+        if (isPlayerHere){
+            if (Input.GetKey(KeyCode.E)){
+                GameManager.instance.addItemToInventory(item_sprite);
+                Debug.Log("Added "+item_sprite.name+" to the players inventory");
+            }
+        }
+    }
 }

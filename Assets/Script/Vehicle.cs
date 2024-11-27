@@ -23,7 +23,7 @@ public class Vehicle : MonoBehaviour
 
         // Move the object towards the current waypoint
         Vector3 targetWaypoint = currentWaypoint.getPos();
-        Debug.Log("Target: " +targetWaypoint);
+        // Debug.Log("Target: " +targetWaypoint);
 
         Vector3 direction = targetWaypoint - transform.position;
 
@@ -32,17 +32,18 @@ public class Vehicle : MonoBehaviour
         {
             // Flip the object based on horizontal movement
             transform.localScale = new Vector3(Mathf.Sign(direction.x) * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-            transform.eulerAngles = new Vector3(0, 0, 0); // Reset rotation for horizontal movement
+            transform.eulerAngles = new Vector3(0, 0, 0);
         }
-        else if (direction.y != 0) // Moving vertically
+        
+        if (direction.y != 0) // Moving vertically
         {
             if (direction.y > 0) // Moving up
             {
-                transform.eulerAngles = new Vector3(0, 0, 90); // Rotate 90 degrees counter-clockwise
+                transform.eulerAngles = new Vector3(0, 0, -90); // Rotate 90 degrees counter-clockwise
             }
             else // Moving down
             {
-                transform.eulerAngles = new Vector3(0, 0, -90); // Rotate 90 degrees clockwise
+                transform.eulerAngles = new Vector3(0, 0, 90); // Rotate 90 degrees clockwise
             }
         }
 
@@ -54,7 +55,7 @@ public class Vehicle : MonoBehaviour
         {
             // Move to the next waypoint (looping back to the first one when finished)
             currentWaypoint = currentWaypoint.getRandomDest();
-            Debug.Log("Next Destination: " +currentWaypoint);
+            // Debug.Log("Next Destination: " +currentWaypoint);
 
         }
     }
