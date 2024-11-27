@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Search;
-
+using System.Linq;
 
 // using UnityEditor.SearchService;
 using UnityEngine;
@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     private GameObject GameOverUI;
     private GameObject StoreUI;
     private GameObject DropZone;
+    private GameObject ObjectiveUI;
     private List<Sprite> inventory = new List<Sprite>();
     private List<Sprite> objective;
 
@@ -36,6 +37,9 @@ public class GameManager : MonoBehaviour
     private int StartSeconds;   
     private float Countdown;
     private bool TimerStatus = false;
+    // public StageManager.instance StageManager.instance;
+
+    // private SpriteListComparer src = new SpriteListComparer();
 
     private void Start()
     {
@@ -67,12 +71,14 @@ public class GameManager : MonoBehaviour
     }
 
     private void Awake(){
-        if (instance == null){
+        if (instance == null)
+        {
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else {
-            Destroy(gameObject);
+        else
+        {
+            Destroy(gameObject); // Prevent duplicate GameManager instances
         }
     }
     
@@ -91,6 +97,7 @@ public class GameManager : MonoBehaviour
             score = 0;
             resumeGame();
             innitUI();
+            innitStage();
             inventory = new List<Sprite>();
             Debug.Log("instantiate status: "+GameManager.instance.CharStatus);
         }
@@ -138,7 +145,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void addToInventoryUI(Sprite item){
-        GameObject inventory = GameObject.Find("Outline");
+        GameObject inventory = GameObject.Find("Inv_Outline");
         for (int i = 0; i < inventory.transform.childCount; i++)
         {
             GameObject child = inventory.transform.GetChild(i).gameObject;
@@ -156,6 +163,46 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void addObjectiveToUI()
+    {
+        if (objective == null || objective.Count == 0)
+        {
+            Debug.LogWarning("Objective list is empty or null.");
+            return;
+        }
+
+        GameObject inventory = GameObject.Find("Obj_Outline");
+        if (inventory == null)
+        {
+            Debug.LogError("Obj_Outline GameObject not found.");
+            return;
+        }
+
+        int objectiveIndex = 0;
+
+        for (int i = 0; i < inventory.transform.childCount; i++)
+        {
+            if (objectiveIndex >= objective.Count) return;
+
+            GameObject child = inventory.transform.GetChild(i).gameObject;
+            SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
+
+            if (sr != null)
+            {
+                if (sr.sprite != null)
+                {
+                    Debug.Log(child.name + " already has a sprite: " + sr.sprite.name);
+                }
+                else
+                {
+                    sr.sprite = objective[objectiveIndex];
+                    objectiveIndex++;
+                }
+            }
+        }
+    }
+
+
     public void showDropZoneUI(){
 
         DropZone.SetActive(true);
@@ -169,8 +216,17 @@ public class GameManager : MonoBehaviour
 
    
     public void checkTarget(){
-        if (objective == inventory){
+        Debug.Log("Checking Target");
+        Debug.Log("obj:"+objective);
+        SpriteListPrinter.PrintSpriteList(objective);
+        Debug.Log("inv:"+inventory);
+
+        SpriteListPrinter.PrintSpriteList(inventory);
+        
+        Debug.Log(SpriteListComparer.AreListsEqual(objective,inventory));
+        if (SpriteListComparer.AreListsEqual(objective,inventory)){
             GameOver();
+            Debug.Log("Stage Over");
         }
     }
 
@@ -181,6 +237,7 @@ public class GameManager : MonoBehaviour
         StoreUI.SetActive(false);
         DropZone = GameObject.Find("DropZone");
         DropZone.SetActive(false);
+        ObjectiveUI = GameObject.Find("Objective");
 
     }
 
@@ -213,5 +270,23 @@ public class GameManager : MonoBehaviour
     {
         TimerStatus = true;
         Countdown = StartSeconds;
+    }
+
+    public void innitStage(){
+        // StageManager.instance.nextStage();
+        Stage stage = StageManager.instance.generateStage();
+        Debug.Log(stage);
+        objective = stage.objectives;
+        addObjectiveToUI();
+    }
+
+    private bool AreListsEqual<T>(List<T> list1, List<T> list2)
+    {
+        // Check if counts match
+        if (list1.Count != list2.Count)
+            return false;
+
+        // Compare sorted lists
+        return list1.OrderBy(item => item).SequenceEqual(list2.OrderBy(item => item));
     }
 }

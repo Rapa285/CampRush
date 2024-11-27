@@ -14,7 +14,7 @@ public class DropZone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        handlePlayerOnArea();
     }
 
     private void OnTriggerEnter2D(Collider2D other)

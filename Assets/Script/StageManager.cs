@@ -11,7 +11,7 @@ using UnityEngine.UI;
 
 public class StageManager : MonoBehaviour
 {
-    private int current_stage;
+    private int current_stage = 4;
 
     // private bool mustDropAll;
 
@@ -23,6 +23,20 @@ public class StageManager : MonoBehaviour
     [SerializeField]
     private List<GameObject> store_list;
 
+    public static StageManager instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public Stage generateStage(){
         int stageId = current_stage;
@@ -35,7 +49,7 @@ public class StageManager : MonoBehaviour
         }
     }
 
-    public Stage generateRandomStage(int dificulty){
+    private Stage generateRandomStage(int dificulty){
         return new Stage();
     }
 
@@ -53,4 +67,5 @@ public struct Stage{
         this.objectives = objectives;
         this.stores = stores;
     }
+
 }
