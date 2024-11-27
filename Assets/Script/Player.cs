@@ -12,12 +12,15 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
-    private Vector2 movement;
+    private Vector3 movement;
     private string VEHICLE_TAG = "Vehicle";
+    private Transform _transform;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        _transform = GetComponent<Transform>();
     }
 
     // Start is called before the first frame update
@@ -27,9 +30,12 @@ public class Player : MonoBehaviour
     }
 
     void Update(){
-
         movement = Movement();
-        rb.velocity = movement * moveSpeed;
+        transform.position += movement * moveSpeed * Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("E key detected globally.");
+        }
     }
 
     Vector2 Movement(){
@@ -38,7 +44,7 @@ public class Player : MonoBehaviour
 
         // Calculate the new position based on input
         // Vector2 newPosition = rb.position + new Vector2(moveX, moveY) * moveSpeed * Time.deltaTime;
-        Vector2 movement = new Vector2(moveX, moveY).normalized;
+        Vector3 movement = new Vector3(moveX, moveY, 0);
         return movement;
     }
 
