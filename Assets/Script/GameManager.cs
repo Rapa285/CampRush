@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance;
-    public static StageManager sm_instance;
+    
 
     [SerializeField]
     private GameObject[] characters;
@@ -30,7 +30,29 @@ public class GameManager : MonoBehaviour
     private List<Sprite> inventory ;
     private List<Sprite> objective;
 
-    private int stage;
+    [SerializeField]
+    private Text TimerText; 
+    [SerializeField]
+    private int StartSeconds;   
+    private float Countdown;
+    private bool TimerStatus = false;
+
+    private void Start()
+    {
+        StartTimer();
+    }
+    void Update()
+    {
+        Timer();
+
+        // if (Input.GetKeyDown(KeyCode.P)) 
+        // {
+        //     if (Time.timeScale == 0f)
+        //         resumeGame();
+        //     else
+        //         pauseGame();
+        // }
+    }
 
     private int _charIndex;
     public int CharIndex{
@@ -162,4 +184,33 @@ public class GameManager : MonoBehaviour
     }
 
     
+    public void Timer()
+    {
+        if (TimerStatus == true && Countdown > 0)
+        {
+            Countdown -= Time.deltaTime;
+            UpdateTimerDisplay();
+
+        }
+        else if (Countdown <= 0 && TimerStatus)
+        {
+            TimerStatus = false;
+            Countdown = 0;
+            UpdateTimerDisplay();
+        }
+    }
+
+    private void UpdateTimerDisplay()
+    {
+        if (TimerText != null)
+        {
+            TimerText.text = Mathf.CeilToInt(Countdown) + " Seconds Left";
+        }
+    }
+
+    public void StartTimer()
+    {
+        TimerStatus = true;
+        Countdown = StartSeconds;
+    }
 }
