@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Search;
 using System.Linq;
 
 // using UnityEditor.SearchService;
@@ -23,11 +22,13 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private int score;
+    private GameObject timerUI;
 
     private GameObject GameOverUI;
     private GameObject StoreUI;
     private GameObject DropZone;
     private GameObject ObjectiveUI;
+    private GameObject StageDoneUI;
     private List<Sprite> inventory = new List<Sprite>();
     private List<Sprite> objective;
 
@@ -91,7 +92,6 @@ public class GameManager : MonoBehaviour
     }
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode){
         if(scene.name == "Gameplay"){
-            // scoreBoard = GameObject.Find("scoreBoard").GetComponent<Text>();
             Instantiate(characters[CharIndex]);
             CharStatus = false;
             score = 0;
@@ -123,6 +123,11 @@ public class GameManager : MonoBehaviour
     public void GameOver(){
         pauseGame();
         GameOverUI.SetActive(true);
+    }
+
+    public void StageDone(){
+        pauseGame();
+        showStageDoneUI();
     }
 
     public void showStoreUI(Sprite item_sprite){
@@ -214,7 +219,18 @@ public class GameManager : MonoBehaviour
 
     }
 
-   
+    
+    public void showStageDoneUI(){
+
+        StageDoneUI.SetActive(true);
+    }
+
+    public void hideStageDoneUI(){
+
+        StageDoneUI.SetActive(false);
+
+    }
+
     public void checkTarget(){
         Debug.Log("Checking Target");
         Debug.Log("obj:"+objective);
@@ -225,12 +241,14 @@ public class GameManager : MonoBehaviour
         
         Debug.Log(SpriteListComparer.AreListsEqual(objective,inventory));
         if (SpriteListComparer.AreListsEqual(objective,inventory)){
-            GameOver();
+            StageDone();
+            incrScore();
             Debug.Log("Stage Over");
         }
     }
 
     private void innitUI(){
+        scoreBoard = GameObject.Find("ScoreText").GetComponent<Text>();
         GameOverUI = GameObject.Find("Game Over");
         GameOverUI.SetActive(false);
         StoreUI = GameObject.Find("Store");
@@ -238,7 +256,10 @@ public class GameManager : MonoBehaviour
         DropZone = GameObject.Find("DropZone");
         DropZone.SetActive(false);
         ObjectiveUI = GameObject.Find("Objective");
-
+        StageDoneUI = GameObject.Find("Stage Done");
+        timerUI = GameObject.Find("TimerText");
+        TimerText = timerUI.GetComponent<Text>();
+        StageDoneUI.SetActive(false);
     }
 
     

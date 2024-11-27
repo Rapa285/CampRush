@@ -9,6 +9,11 @@ public class GameplayUIController : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); // returns "Gameplay"
     }
 
+    public void NextStage(){
+        StageManager.instance.nextStage();
+        RestartGame();
+    }
+
     public void HomeButton(){
         SceneManager.LoadScene("Main Menu");
 

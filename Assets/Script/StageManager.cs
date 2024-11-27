@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Search;
 
 
 // using UnityEditor.SearchService;
@@ -11,7 +10,7 @@ using UnityEngine.UI;
 
 public class StageManager : MonoBehaviour
 {
-    private int current_stage = 4;
+    private int current_stage = 1;
 
     // private bool mustDropAll;
 
@@ -55,6 +54,10 @@ public class StageManager : MonoBehaviour
 
     public void nextStage(){
         current_stage++;
+    }
+
+    public void setStage(int stage){
+        current_stage = stage;
     }
 }
 
