@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     private GameObject GameOverUI;
     private GameObject StoreUI;
     private GameObject DropZone;
-    private List<Sprite> inventory ;
+    private List<Sprite> inventory = new List<Sprite>();
     private List<Sprite> objective;
 
     [SerializeField]
@@ -180,7 +180,8 @@ public class GameManager : MonoBehaviour
         StoreUI = GameObject.Find("Store");
         StoreUI.SetActive(false);
         DropZone = GameObject.Find("DropZone");
-        hideDropZoneUI();
+        DropZone.SetActive(false);
+
     }
 
     
