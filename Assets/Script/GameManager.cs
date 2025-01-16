@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
         //     else
         //         pauseGame();
         // }
-    }
+    } // Pause the game
 
     private int _charIndex;
     public int CharIndex{
@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
     public bool CharStatus{
         get{return isCharacterDead;}
         set { isCharacterDead = value;}
-    }
+    } //Check if the character is dead
 
     private void Awake(){
         if (instance == null)
