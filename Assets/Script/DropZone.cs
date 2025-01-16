@@ -38,7 +38,7 @@ public class DropZone : MonoBehaviour
     }
 
     private void handlePlayerOnArea(){
-        if (isPlayerHere && Input.GetKey(KeyCode.Space)){
+        if (isPlayerHere){
             GameManager.instance.checkTarget();
         }
     }
