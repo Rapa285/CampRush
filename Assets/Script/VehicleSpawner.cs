@@ -2,24 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VehicleSpawner : MonoBehaviour
+public class VehicleSpawner : MonoBehaviour  // Array untuk menyimpan referensi prefab kendaraan
 {
 
-    [SerializeField]
+    [SerializeField]  // Arah gerakan kendaraan (positif atau negatif)
     private GameObject[] vehicleReference;
 
-    [SerializeField]
+    [SerializeField] // Array untuk menyimpan kecepatan masing-masing jenis kendaraan
     private int direction;
 
-    [SerializeField]
+    [SerializeField] // Referensi untuk kendaraan yang baru saja di-spawn
     private int[] speed = {7,5,6};
     private GameObject spawnedVehicle;
 
-    private int randomIndex;
+    private int randomIndex; // Indeks acak untuk memilih kendaraan dan kecepatannya
 
     
 
-    // Start is called before the first frame update
+    // Fungsi Start dipanggil sekali saat game dimulai
     void Start()
     {
         StartCoroutine(SpawnVehicles());
@@ -39,6 +39,7 @@ public class VehicleSpawner : MonoBehaviour
             // scale.x *= direction;
             // spawnedVehicle.transform.localScale = scale;
             
+            // Tetapkan kecepatan gerakan kendaraan berdasarkan arah dan kecepatan yang sudah ditentukan
             spawnedVehicle.GetComponent<Vehicle>().speed = - direction * speed[randomIndex];
         } // while loop
     }
