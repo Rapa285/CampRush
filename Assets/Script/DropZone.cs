@@ -23,7 +23,7 @@ public class DropZone : MonoBehaviour
         {
             Debug.Log("Player entered the trigger zone.");
             GameManager.instance.showDropZoneUI();
-            isPlayerHere = true;
+            isPlayerHere = true; //checking if the player is in the drop zone
         }
     }
 
@@ -33,13 +33,13 @@ public class DropZone : MonoBehaviour
         {
             Debug.Log("Player exited the trigger zone.");
             GameManager.instance.hideDropZoneUI();
-            isPlayerHere = false;
+            isPlayerHere = false; //checking if the players isn't in the drop zone
         }
     }
 
     private void handlePlayerOnArea(){
         if (isPlayerHere){
-            GameManager.instance.checkTarget();
+            GameManager.instance.checkTarget(); //so the item that the player holds can be dropped
         }
     }
 }
